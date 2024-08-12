@@ -1,4 +1,4 @@
-package io.github.llh4github.lotus.commons.properties
+package io.github.llh4github.lotus.commons.property
 
 open class IdGeneratorProperty {
     /**
