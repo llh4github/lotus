@@ -44,9 +44,7 @@ publishing {
             version = project.version.toString()
 
             pom{
-                name.set("${project.group}:${project.name}")
-                description.set("The description of the project")
-
+                description.set("我的web开发工具集。My web development toolset.")
                 licenses {
                     license {
                         name.set("The Apache Software License, Version 2.0")
