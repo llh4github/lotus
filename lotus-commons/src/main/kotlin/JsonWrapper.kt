@@ -1,4 +1,4 @@
-package io.github.llh4github.smmtemplate.commons
+package io.github.llh4github.lotus.commons
 
 import io.swagger.v3.oas.annotations.media.Schema
 
@@ -8,6 +8,8 @@ data class JsonWrapper<T>(
     val code: String = "200",
     @Schema(title = "响应消息")
     val msg: String = "OK",
+    @Schema(title = "出错模块", description = "出错模块名称，正常响应为空")
+    val module: String = "",
     @Schema(title = "响应数据")
     val data: T? = null,
 ) {
@@ -28,8 +30,11 @@ data class JsonWrapper<T>(
         }
 
         @JvmStatic
-        fun <T> fail(code: String = "9999", msg: String = "未知错误", data: T? = null): JsonWrapper<T> {
-            return JsonWrapper(code = code, msg = msg, data = data)
+        fun <T> fail(
+            code: String = "9999", msg: String = "未知错误",
+            module: String = "", data: T? = null
+        ): JsonWrapper<T> {
+            return JsonWrapper(code = code, msg = msg, module = module, data = data)
         }
     }
 }

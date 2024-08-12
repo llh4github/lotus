@@ -3,6 +3,5 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
 }
 
-rootProject.name = "spring-multi-module-template"
-include("mod-commons")
-include("mod-web")
+rootProject.name = "lotus"
+include("lotus-commons")
