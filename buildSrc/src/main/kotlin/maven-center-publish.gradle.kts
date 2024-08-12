@@ -11,8 +11,6 @@ val jarJavadoc by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-val usernameValue: String = project.findProperty("OSSRH_USERNAME") as String? ?: System.getenv("OSSRH_USERNAME")
-val passwordValue: String = project.findProperty("OSSRH_PASSWORD") as String? ?: System.getenv("OSSRH_PASSWORD")
 
 publishing {
     repositories {
@@ -20,8 +18,8 @@ publishing {
             name = "central"
             url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
             credentials {
-                username = usernameValue
-                password = passwordValue
+                username = project.findProperty("OSSRH_USERNAME") as String? ?: System.getenv("OSSRH_USERNAME")
+                password = project.findProperty("OSSRH_PASSWORD") as String? ?: System.getenv("OSSRH_PASSWORD")
             }
         }
 
@@ -29,8 +27,8 @@ publishing {
             name = "snapshot"
             url = uri("https://oss.sonatype.org/content/repositories/snapshots")
             credentials {
-                username = usernameValue
-                password = passwordValue
+                username = project.findProperty("OSSRH_USERNAME") as String? ?: System.getenv("OSSRH_USERNAME")
+                password = project.findProperty("OSSRH_PASSWORD") as String? ?: System.getenv("OSSRH_PASSWORD")
             }
         }
     }
