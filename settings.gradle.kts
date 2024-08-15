@@ -5,3 +5,4 @@ plugins {
 
 rootProject.name = "lotus"
 include("lotus-commons")
+include("lotus-web-core")

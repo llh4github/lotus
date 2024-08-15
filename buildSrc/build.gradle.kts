@@ -9,7 +9,7 @@ repositories {
 
 dependencies {
     implementation(libs.kotlin.gradle)
-    implementation(libs.springBoot.gradle)
+    implementation(libs.springboot.gradle)
     implementation(libs.kotlin.allopen)
     implementation(libs.kotlin.noarg)
     implementation(libs.graalvm.native)
