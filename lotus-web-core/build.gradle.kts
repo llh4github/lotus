@@ -10,7 +10,7 @@ dependencies {
 
     ksp(libs.jimmer.ksp)
 
-    compileOnly("org.springframework.boot:spring-boot-starter")
+    compileOnly("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.springframework.boot:spring-boot-starter-jdbc")
     compileOnly(libs.jimmer.core)
     compileOnly(libs.jimmer.sql.kotlin)
