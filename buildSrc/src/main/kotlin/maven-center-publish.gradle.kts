@@ -1,3 +1,6 @@
+group = rootProject.group
+version = rootProject.version
+
 plugins {
     id("kotlin")
     id("maven-publish")
@@ -11,26 +14,24 @@ val jarJavadoc by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-val usernameValue: String = project.findProperty("OSSRH_USERNAME") as String? ?: System.getenv("OSSRH_USERNAME")
-val passwordValue: String = project.findProperty("OSSRH_PASSWORD") as String? ?: System.getenv("OSSRH_PASSWORD")
 
 publishing {
     repositories {
         maven {
             name = "central"
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+            url = uri("https://s01.oss.sonatype.org/content/repositories/releases")
             credentials {
-                username = usernameValue
-                password = passwordValue
+                username = project.findProperty("OSSRH_USERNAME") as String? ?: System.getenv("OSSRH_USERNAME")
+                password = project.findProperty("OSSRH_PASSWORD") as String? ?: System.getenv("OSSRH_PASSWORD")
             }
         }
 
         maven {
             name = "snapshot"
-            url = uri("https://oss.sonatype.org/content/repositories/snapshots")
+            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots")
             credentials {
-                username = usernameValue
-                password = passwordValue
+                username = project.findProperty("OSSRH_USERNAME") as String? ?: System.getenv("OSSRH_USERNAME")
+                password = project.findProperty("OSSRH_PASSWORD") as String? ?: System.getenv("OSSRH_PASSWORD")
             }
         }
     }
@@ -46,9 +47,7 @@ publishing {
             version = project.version.toString()
 
             pom{
-                name.set("${project.group}:${project.name}")
-                description.set("The description of the project")
-
+                description.set("我的web开发工具集。My web development toolset.")
                 licenses {
                     license {
                         name.set("The Apache Software License, Version 2.0")
