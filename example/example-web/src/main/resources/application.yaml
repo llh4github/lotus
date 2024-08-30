@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: web-example
+  datasource:
+    url: jdbc:mysql://localhost:3306/lotus
+    username: root
+    password: root
+

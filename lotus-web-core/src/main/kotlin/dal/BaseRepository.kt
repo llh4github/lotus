@@ -13,7 +13,7 @@ import org.babyfish.jimmer.sql.kt.ast.query.KConfigurableRootQuery
 import org.babyfish.jimmer.sql.kt.ast.query.KMutableRootQuery
 import kotlin.reflect.KClass
 
-abstract class BaseRepository<E : BaseModel> {
+internal abstract class BaseRepository<E : BaseModel> {
 
     @Resource
     protected lateinit var sqlClient: KSqlClient
