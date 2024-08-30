@@ -6,3 +6,6 @@ plugins {
 rootProject.name = "lotus"
 include("lotus-commons")
 include("lotus-web-core")
+
+// example subproject
+include("example:example-web")
