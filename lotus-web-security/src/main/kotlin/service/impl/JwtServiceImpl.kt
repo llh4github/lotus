@@ -10,6 +10,8 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import org.springframework.data.redis.core.StringRedisTemplate
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.util.DigestUtils
 import java.util.*
 
@@ -45,6 +47,7 @@ class JwtServiceImpl(
         val builder = Jwts.builder()
             .id(tokenId)
             .claims(map)
+            .issuer(property.issuer)
             .signWith(secretKey)
             .expiration(expire)
 
@@ -64,6 +67,21 @@ class JwtServiceImpl(
         }
     }
 
+    override fun validateJwt(jwt: String) {
+        SecurityContextHolder.clearContext()
+        if (!isCached(jwt)) {
+            logger.warn { "jwt没有在缓存中，视为非法jwt处理。 $jwt" }
+            return
+        }
+        try {
+            val payload = parser.parse(jwt).payload as Map<*, *>
+            val username = payload["username"] as String
+            val token = UsernamePasswordAuthenticationToken(username, null, emptyList())
+            SecurityContextHolder.getContext().authentication = token
+        } catch (e: Exception) {
+            logger.warn(e) { "jwt验证出错: $jwt" }
+        }
+    }
 
     //#region token缓存操作
 

@@ -9,6 +9,12 @@ interface JwtService {
     fun isValid(token: String): Boolean
 
     /**
+     * 验证token是否有效。
+     *
+     * 有效时会填充SecurityContextHolder。
+     */
+    fun validateJwt(jwt: String)
+    /**
      * 移除token。
      *
      * 移除的token将不会通过验证。

@@ -12,7 +12,8 @@ class SecurityProperty {
      * 签发人。通常是访问域名。
      */
     var issuer: String = "lotus-web-security"
-
+    var tokenHeaderName = "Authorization"
+    var tokenHeaderPrefix = "Bearer "
     /**
      * 令牌秘钥
      *
